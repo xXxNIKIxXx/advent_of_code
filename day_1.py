@@ -93,7 +93,7 @@ def calculate_similarity_score(left_list, right_list):
 left_list = []
 right_list = []
 
-with open('2024/day_1.txt') as file:
+with open('day_1.txt') as file:
     lines = file.readlines()
 
 for line in lines:
