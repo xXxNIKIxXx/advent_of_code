@@ -31,6 +31,19 @@ def find_shortest_route(distances):
             shortest_distance = distance
     return shortest_distance
 
+
+def find_longest_route(distances):
+    locations = list(distances.keys())
+    longest_distance = 0
+    for route in itertools.permutations(locations):
+        distance = calculate_route_distance(route, distances)
+        if distance > longest_distance:
+            longest_distance = distance
+    return longest_distance
+
 distances = parse_input('day_9.txt')
 shortest_distance = find_shortest_route(distances)
 print(f"The shortest distance is {shortest_distance}")
+
+longest_distance = find_longest_route(distances)
+print(f"The longest distance is {longest_distance}")
