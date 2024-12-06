@@ -37,3 +37,19 @@ with open('day_18.txt') as f:
     input_str = f.read()
 steps = 100
 print(animate_lights(input_str, steps))
+
+def set_corners_on(grid):
+    grid[0][0] = '#'
+    grid[0][len(grid[0]) - 1] = '#'
+    grid[len(grid) - 1][0] = '#'
+    grid[len(grid) - 1][len(grid[0]) - 1] = '#'
+
+def animate_lights_with_stuck_corners(input_str, steps):
+    grid = parse_input(input_str)
+    set_corners_on(grid)
+    for _ in range(steps):
+        grid = step(grid)
+        set_corners_on(grid)
+    return count_lights_on(grid)
+
+print(animate_lights_with_stuck_corners(input_str, steps))
