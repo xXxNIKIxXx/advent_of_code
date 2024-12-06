@@ -39,3 +39,6 @@ def find_next_password(password):
 current_password = 'hepxcrrq'
 next_password = find_next_password(current_password)
 print(next_password)
+
+next_next_password = find_next_password(next_password)
+print(next_next_password)
