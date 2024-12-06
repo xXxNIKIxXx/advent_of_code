@@ -33,3 +33,24 @@ file_path = 'day_14.txt'
 total_time = 2503
 winner, distance = find_winning_reindeer(file_path, total_time)
 print(f"The winning reindeer is {winner} with a distance of {distance} km.")
+
+def calculate_points(reindeer_data, total_time):
+    points = {r['name']: 0 for r in reindeer_data}
+    distances = {r['name']: 0 for r in reindeer_data}
+
+    for second in range(1, total_time + 1):
+        for r in reindeer_data:
+            cycle_time = r['fly_time'] + r['rest_time']
+            if second % cycle_time <= r['fly_time'] and second % cycle_time != 0:
+                distances[r['name']] += r['speed']
+        
+        max_distance = max(distances.values())
+        for name, distance in distances.items():
+            if distance == max_distance:
+                points[name] += 1
+
+    winning_reindeer = max(points, key=points.get)
+    return winning_reindeer, points[winning_reindeer]
+
+winner, points = calculate_points(parse_reindeer_data(file_path), total_time)
+print(f"The winning reindeer is {winner} with {points} points.")
