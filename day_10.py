@@ -18,3 +18,6 @@ def apply_look_and_say(sequence, iterations):
 puzzle_input = "1113122113"
 result = apply_look_and_say(puzzle_input, 40)
 print(f"Length of the result after 40 iterations: {len(result)}")
+
+result_part_two = apply_look_and_say(puzzle_input, 50)
+print(f"Length of the result after 50 iterations: {len(result_part_two)}")
