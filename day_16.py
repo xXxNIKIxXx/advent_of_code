@@ -36,3 +36,23 @@ for sue_number, sue_info in aunt_sues:
     if matches_analysis(sue_info, mfcsam_analysis):
         print(f"Aunt Sue {sue_number} gave you the gift.")
         break
+    
+
+def matches_analysis_part_two(sue_info, analysis):
+    for key, value in sue_info.items():
+        if key in analysis:
+            if key in ["cats", "trees"]:
+                if value <= analysis[key]:
+                    return False
+            elif key in ["pomeranians", "goldfish"]:
+                if value >= analysis[key]:
+                    return False
+            else:
+                if value != analysis[key]:
+                    return False
+    return True
+
+for sue_number, sue_info in aunt_sues:
+    if matches_analysis_part_two(sue_info, mfcsam_analysis):
+        print(f"The real Aunt Sue is {sue_number}.")
+        break
