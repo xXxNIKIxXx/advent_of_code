@@ -10,6 +10,13 @@ def calculate_total_distance(left_list, right_list):
     
     return total_distance
 
+def calculate_similarity_score(left_list, right_list):
+    
+    right_count = Counter(right_list)
+    similarity_score = sum(num * right_count[num] for num in left_list)
+    
+    return similarity_score
+
 left_list = []
 right_list = []
 
@@ -24,3 +31,5 @@ for line in lines:
     
     
 print(calculate_total_distance(left_list, right_list))
+
+print(calculate_similarity_score(left_list, right_list))
