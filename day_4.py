@@ -12,3 +12,5 @@ def mine_adventcoins(secret_key, startwith):
 secret_key = "yzbqklnj"
 result_five = mine_adventcoins(secret_key, "00000")
 print(f"The lowest number that produces an MD5 hash starting with five zeroes is: {result_five}")
+result_six = mine_adventcoins(secret_key, "000000")
+print(f"The lowest number that produces an MD5 hash starting with six zeroes is: {result_six}")
