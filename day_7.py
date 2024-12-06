@@ -59,3 +59,13 @@ def evaluate(wire):
 # Get the value of wire 'a'
 result = get_value('a')
 print(f"The signal ultimately provided to wire 'a' is: {result}")
+
+# Override wire 'b' with the value of wire 'a'
+wires = {'b': result}
+
+# Reset the other wires
+instructions = [instr for instr in instructions if not instr.endswith(' -> b')]
+
+# Get the new value of wire 'a'
+new_result = get_value('a')
+print(f"The new signal ultimately provided to wire 'a' is: {new_result}")
