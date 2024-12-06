@@ -44,3 +44,22 @@ def find_best_score(ingredients):
 ingredients = parse_ingredients('day_15.txt')
 best_score = find_best_score(ingredients)
 print(f"The highest-scoring cookie has a score of: {best_score}")
+
+def calculate_calories(ingredients, amounts):
+    calories = 0
+    for ingredient, amount in zip(ingredients, amounts):
+        calories += ingredients[ingredient]['calories'] * amount
+    return calories
+
+def find_best_score_with_calories(ingredients, target_calories):
+    best_score = 0
+    for amounts in itertools.product(range(101), repeat=len(ingredients)):
+        if sum(amounts) == 100:
+            if calculate_calories(ingredients, amounts) == target_calories:
+                score = calculate_score(ingredients, amounts)
+                if score > best_score:
+                    best_score = score
+    return best_score
+
+best_score_with_calories = find_best_score_with_calories(ingredients, 500)
+print(f"The highest-scoring cookie with 500 calories has a score of: {best_score_with_calories}")
