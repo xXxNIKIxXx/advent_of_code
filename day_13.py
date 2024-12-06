@@ -34,3 +34,13 @@ def find_optimal_arrangement(happiness):
 happiness = parse_input('day_13.txt')
 optimal_happiness = find_optimal_arrangement(happiness)
 print(f"The total change in happiness for the optimal seating arrangement is {optimal_happiness}")
+
+
+# Add yourself to the happiness dictionary with 0 happiness change with everyone
+for person in happiness.keys():
+    happiness[person]['You'] = 0
+happiness['You'] = {person: 0 for person in happiness.keys()}
+
+# Find the optimal arrangement including yourself
+optimal_happiness_with_you = find_optimal_arrangement(happiness)
+print(f"The total change in happiness for the optimal seating arrangement including yourself is {optimal_happiness_with_you}")
