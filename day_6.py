@@ -24,6 +24,20 @@ def apply_instruction(grid, instruction):
 def count_lights(grid):
     return sum(sum(row) for row in grid)
 
+def apply_instruction_v2(grid, instruction):
+    action, start, end = instruction
+    for x in range(start[0], end[0] + 1):
+        for y in range(start[1], end[1] + 1):
+            if action == "turn on":
+                grid[x][y] += 1
+            elif action == "turn off":
+                grid[x][y] = max(0, grid[x][y] - 1)
+            elif action == "toggle":
+                grid[x][y] += 2
+
+def total_brightness(grid):
+    return sum(sum(row) for row in grid)
+
 grid = [[0] * 1000 for _ in range(1000)]
 with open('day_6.txt') as f:
     instructions = f.readlines()
@@ -33,3 +47,13 @@ for instruction in instructions:
     apply_instruction(grid, parsed_instruction)
 
 print(f"Number of lights that are lit: {count_lights(grid)}")
+
+grid = [[0] * 1000 for _ in range(1000)]
+with open('day_6.txt') as f:
+    instructions = f.readlines()
+
+for instruction in instructions:
+    parsed_instruction = parse_instruction(instruction.strip())
+    apply_instruction_v2(grid, parsed_instruction)
+
+print(f"Total brightness of all lights: {total_brightness(grid)}")
