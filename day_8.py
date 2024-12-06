@@ -28,3 +28,22 @@ result = total_code_characters - total_memory_characters
 print(f"Total characters of code: {total_code_characters}")
 print(f"Total characters in memory: {total_memory_characters}")
 print(f"Difference: {result}")
+
+def encode_string(s):
+    # Escape backslashes and double quotes
+    s = s.replace('\\', '\\\\')
+    s = s.replace('"', '\\"')
+    # Add surrounding double quotes
+    s = f'"{s}"'
+    return s
+
+total_encoded_characters = 0
+
+for line in lines:
+    line = line.strip()
+    encoded_line = encode_string(line)
+    total_encoded_characters += len(encoded_line)
+
+result_encoded = total_encoded_characters - total_code_characters
+print(f"Total characters of encoded strings: {total_encoded_characters}")
+print(f"Difference between encoded and original: {result_encoded}")
