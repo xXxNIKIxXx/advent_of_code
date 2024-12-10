@@ -17,8 +17,14 @@ def is_almost_safe_report(report):
             return True
     return False
 
+def count_safe_or_almost_safe_reports(reports):
+    return sum(1 for report in reports if is_safe_report(report) or is_almost_safe_report(report))
+
 with open('day_2.txt') as f:
     reports = f.readlines()
 
 safe_reports_count = count_safe_reports(reports)
 print(f"Number of safe reports: {safe_reports_count}")
+
+safe_or_almost_safe_reports_count = count_safe_or_almost_safe_reports(reports)
+print(f"Number of safe or almost safe reports: {safe_or_almost_safe_reports_count}")
