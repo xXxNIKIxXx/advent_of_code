@@ -54,3 +54,17 @@ for weapon in weapons:
                 min_cost = min(min_cost, cost)
 
 print(f"The least amount of gold you can spend and still win the fight is: {min_cost}")
+
+max_cost = 0
+
+# Generate all possible combinations of items
+for weapon in weapons:
+    for arm in armor:
+        for ring1, ring2 in combinations(rings, 2):
+            cost = weapon["cost"] + arm["cost"] + ring1["cost"] + ring2["cost"]
+            damage = weapon["damage"] + ring1["damage"] + ring2["damage"]
+            total_armor = arm["armor"] + ring1["armor"] + ring2["armor"]
+            if not simulate_battle(damage, total_armor):
+                max_cost = max(max_cost, cost)
+
+print(f"The most amount of gold you can spend and still lose the fight is: {max_cost}")
