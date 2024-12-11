@@ -115,3 +115,46 @@ def play_all_games(me, boss):
 play_all_games(me, boss)
 
 print(cheapest_spent)
+
+
+me = Player({"hp": 50, "mana": 500}, True)
+boss = Player({"hp": 51, "damage_amt": 9}, False)
+cheapest_spent = float('inf')
+
+def play_all_games(me, boss):
+    global cheapest_spent
+    for i in range(len(me.spells)):
+        spell_match = False
+
+        for spell in me.active_spells:
+            if spell["duration"] > 1 and i == spell["idx"]:
+                spell_match = True
+
+        if spell_match:
+            continue
+        if me.spells[i]["cost"] > me.mana:
+            continue
+
+        new_me = me.duplicate()
+        new_boss = boss.duplicate()
+
+        new_me.hp -= 1  # Hard mode: lose 1 HP at the start of each turn
+        if new_me.hp <= 0:
+            continue
+
+        new_me.take_turn(new_boss)
+        new_boss.take_turn(new_me)
+        new_me.attack(new_boss, i)
+
+        new_me.take_turn(new_boss)
+        new_boss.take_turn(new_me)
+        new_boss.attack(new_me)
+
+        if new_boss.hp <= 0:
+            cheapest_spent = min(cheapest_spent, new_me.spent)
+        if new_me.hp > 1 and new_boss.hp > 0 and new_me.spent < cheapest_spent:
+            play_all_games(new_me, new_boss)
+
+play_all_games(me, boss)
+
+print(cheapest_spent)
