@@ -1,5 +1,4 @@
 def execute_instructions(instructions):
-    registers = {'a': 0, 'b': 0}
     pc = 0  # program counter
 
     while pc < len(instructions):
@@ -30,8 +29,13 @@ def execute_instructions(instructions):
 
     return registers['b']
 
-if __name__ == "__main__":
-    with open('day_23.txt') as f:
-        instructions = [line.strip() for line in f.readlines()]
-    result = execute_instructions(instructions)
-    print(f"The value in register b is {result}")
+with open('day_23.txt') as f:
+    instructions = [line.strip() for line in f.readlines()]
+
+registers = {'a': 0, 'b': 0}
+result = execute_instructions(instructions)
+print(f"The value in register b is {result}")
+
+registers = {'a': 1, 'b': 0}
+result = execute_instructions(instructions)
+print(f"The value in register b with register a starting at 1 is {result}")
