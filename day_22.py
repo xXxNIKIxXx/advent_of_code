@@ -93,3 +93,7 @@ boss_state = {'hp': 51, 'damage': 10}
 # Part 1
 part1_result = min(filter(None, play(1, True, 0, initial_state, boss_state, [])))
 print(f"Part 1 - min to win: {part1_result}")
+
+# Part 2
+part2_result = min(filter(None, play(2, True, 0, initial_state, boss_state, [])))
+print(f"Part 2 - min to win: {part2_result}")
